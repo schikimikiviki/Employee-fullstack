@@ -1,49 +1,86 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import reportWebVitals from "./reportWebVitals";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import reportWebVitals from './reportWebVitals';
 
-import Layout from "./Pages/Layout";
-import ErrorPage from "./Pages/ErrorPage";
-import EmployeeList from "./Pages/EmployeeList";
-import EmployeeCreator from "./Pages/EmployeeCreator";
-import EmployeeUpdater from "./Pages/EmployeeUpdater";
+import Layout from './Pages/Layout';
+import EmployeeLayout from './Pages/EmployeeLayout/EmployeeLayout';
+import EquipmentLayout from './Pages/EquipmentLayout/EquipmentLayout';
+import ErrorPage from './Pages/ErrorPage';
+import EmployeeList from './Pages/EmployeeList';
+import EmployeeCreator from './Pages/EmployeeCreator';
+import EmployeeUpdater from './Pages/EmployeeUpdater';
+import SuperheroList from './Pages/SuperherosPage';
+import Welcome from './Pages/WelcomePage';
+import StatisticsList from './Pages/Statistics';
+import SingleEmployeeList from './Pages/SingleEmployee';
+import EquipmentList from './Pages/EquipmentList';
 
-import "./index.css";
-import TableTest from "./Pages/TableTest";
-import FormTest from "./Pages/FormTest";
+import './index.css';
+import TableTest from './Pages/TableTest';
+import FormTest from './Pages/FormTest';
 
 const router = createBrowserRouter([
   {
-    path: "/",
+    path: '/',
     element: <Layout />,
     errorElement: <ErrorPage />,
     children: [
+      { path: '', element: <Welcome /> },
+      { path: '/statistics', element: <StatisticsList /> },
       {
-        path: "/",
-        element: <EmployeeList />,
-      },
-      {
-        path: "/create",
+        path: 'create',
         element: <EmployeeCreator />,
       },
       {
-        path: "/update/:id",
-        element: <EmployeeUpdater />,
+        path: '/equipment',
+        element: <EquipmentLayout />,
+        children: [{ path: '', element: <EquipmentList /> }],
       },
       {
-        path: "/table-test",
+        path: '/employees',
+        element: <EmployeeLayout />,
+        children: [
+          {
+            path: '',
+            element: <EmployeeList />,
+          },
+          {
+            path: 'create',
+            element: <EmployeeCreator />,
+          },
+          {
+            path: 'update/:id',
+            element: <EmployeeUpdater />,
+          },
+          {
+            path: ':search',
+            element: <SingleEmployeeList></SingleEmployeeList>,
+          },
+        ],
+      },
+
+      {
+        path: 'table-test',
         element: <TableTest />,
       },
       {
-        path: "/form-test",
+        path: 'form-test',
         element: <FormTest />,
+      },
+      {
+        path: 'hello',
+        element: <h1>HELLO</h1>,
+      },
+      {
+        path: 'superheros',
+        element: <SuperheroList></SuperheroList>,
       },
     ],
   },
 ]);
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <RouterProvider router={router} />

@@ -4,14 +4,14 @@ const mongoose = require('mongoose');
 
 const { Schema } = mongoose;
 
-const EmployeeSchema = new Schema({
+const EquipmentSchema = new Schema({
   name: String,
-  level: String,
-  position: String,
+  type: String,
+  place: String,
   created: {
     type: Date,
     default: Date.now,
   },
 });
 
-module.exports = mongoose.model('Employee', EmployeeSchema);
+module.exports = mongoose.model('Equipment', EquipmentSchema);
