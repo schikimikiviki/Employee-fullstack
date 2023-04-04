@@ -9,7 +9,9 @@ import EquipmentLayout from './Pages/EquipmentLayout/EquipmentLayout';
 import ErrorPage from './Pages/ErrorPage';
 import EmployeeList from './Pages/EmployeeList';
 import EmployeeCreator from './Pages/EmployeeCreator';
+import EquipmentCreator from './Pages/EquipmentCreator';
 import EmployeeUpdater from './Pages/EmployeeUpdater';
+import EquipmentUpdater from './Pages/EquipmentUpdater';
 import SuperheroList from './Pages/SuperherosPage';
 import Welcome from './Pages/WelcomePage';
 import StatisticsList from './Pages/Statistics';
@@ -33,9 +35,23 @@ const router = createBrowserRouter([
         element: <EmployeeCreator />,
       },
       {
+        path: 'create-equipment',
+        element: <EquipmentCreator />,
+      },
+      {
         path: '/equipment',
         element: <EquipmentLayout />,
-        children: [{ path: '', element: <EquipmentList /> }],
+        children: [
+          { path: '', element: <EquipmentList /> },
+          {
+            path: 'create-equipment',
+            element: <EquipmentCreator />,
+          },
+          {
+            path: 'update/:id',
+            element: <EquipmentUpdater />,
+          },
+        ],
       },
       {
         path: '/employees',
