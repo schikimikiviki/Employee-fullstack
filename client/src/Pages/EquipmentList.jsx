@@ -4,7 +4,7 @@ import Loading from '../Components/Loading';
 import EquipmentTable from '../Components/EquipmentTable';
 
 const fetchEquipment = () => {
-  return fetch('api/equipment').then((res) => res.json());
+  return fetch('/api/equipment').then((res) => res.json());
 };
 
 const deleteEquipment = (id) => {
@@ -36,14 +36,7 @@ const EquipmentList = () => {
     return <Loading />;
   }
 
-  //   const processedEmployees = equipments.map(({ name, position, level }) => {
-  //     const nameParts = name.split(' ');
-  //     const firstName = nameParts[0];
-  //     const lastName = nameParts[nameParts.length - 1];
-  //     const middleName =
-  //       nameParts.length > 2 ? nameParts.slice(1, -1).join(' ') : '';
-  //     return { name, firstName, middleName, lastName, position, level };
-  //   });
+  //console.log(equipments);
 
   return <EquipmentTable equipments={equipments} onDelete={handleDelete} />;
 };

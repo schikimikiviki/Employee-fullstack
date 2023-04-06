@@ -102,6 +102,30 @@ app.get('/api/equipment', async (req, res) => {
   return res.json(equipment);
 });
 
+app.post('/api/equipment/', async (req, res, next) => {
+  const equipment = req.body;
+
+  try {
+    const saved = await Equipment.create(equipment);
+    return res.json(saved);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.patch('/api/equipment/:id', async (req, res, next) => {
+  try {
+    const equipment = await Equipment.findOneAndUpdate(
+      { _id: req.params.id },
+      { $set: { ...req.body } },
+      { new: true }
+    );
+    return res.json(equipment);
+  } catch (err) {
+    return next(err);
+  }
+});
+
 const main = async () => {
   await mongoose.connect(MONGO_URL);
 

@@ -1,4 +1,5 @@
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+  console.log(employee);
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);

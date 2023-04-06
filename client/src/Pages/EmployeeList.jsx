@@ -26,6 +26,7 @@ const EmployeeList = () => {
 
   useEffect(() => {
     fetchEmployees().then((employees) => {
+      console.log(employees);
       setLoading(false);
       setEmployees(employees);
     });
@@ -35,13 +36,13 @@ const EmployeeList = () => {
     return <Loading />;
   }
 
-  const processedEmployees = employees.map(({ name, position, level }) => {
+  const processedEmployees = employees.map(({ name, position, level, _id }) => {
     const nameParts = name.split(' ');
     const firstName = nameParts[0];
     const lastName = nameParts[nameParts.length - 1];
     const middleName =
       nameParts.length > 2 ? nameParts.slice(1, -1).join(' ') : '';
-    return { name, firstName, middleName, lastName, position, level };
+    return { name, firstName, middleName, lastName, position, level, _id };
   });
 
   return (
