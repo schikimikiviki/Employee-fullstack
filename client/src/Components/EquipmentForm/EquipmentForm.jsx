@@ -1,4 +1,4 @@
-const EquipmentForm = ({ onSave, disabled, equipment, onCancel }) => {
+const EquipmentForm = ({ onSave, disabled, initialequipment, onCancel }) => {
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
@@ -16,14 +16,14 @@ const EquipmentForm = ({ onSave, disabled, equipment, onCancel }) => {
 
   return (
     <form className='EmployeeForm' onSubmit={onSubmit}>
-      {equipment && (
-        <input type='hidden' name='_id' defaultValue={equipment._id} />
+      {initialequipment && (
+        <input type='hidden' name='_id' defaultValue={initialequipment._id} />
       )}
 
       <div className='control'>
         <label htmlFor='name'>Name:</label>
         <input
-          defaultValue={equipment ? equipment.name : null}
+          defaultValue={initialequipment ? initialequipment.name : null}
           name='name'
           id='name'
         />
@@ -32,7 +32,7 @@ const EquipmentForm = ({ onSave, disabled, equipment, onCancel }) => {
       <div className='control'>
         <label htmlFor='type'>Type:</label>
         <input
-          defaultValue={equipment ? equipment.type : null}
+          defaultValue={initialequipment ? initialequipment.type : null}
           name='type'
           id='type'
         />
@@ -41,7 +41,7 @@ const EquipmentForm = ({ onSave, disabled, equipment, onCancel }) => {
       <div className='control'>
         <label htmlFor='place'>Place:</label>
         <input
-          defaultValue={equipment ? equipment.place : null}
+          defaultValue={initialequipment ? initialequipment.place : null}
           name='place'
           id='place'
         />
@@ -49,7 +49,7 @@ const EquipmentForm = ({ onSave, disabled, equipment, onCancel }) => {
 
       <div className='buttons'>
         <button type='submit' disabled={disabled}>
-          {equipment ? 'Update Equipment' : 'Create Equipment'}
+          {initialequipment ? 'Update Equipment' : 'Create Equipment'}
         </button>
 
         <button type='button' onClick={onCancel}>

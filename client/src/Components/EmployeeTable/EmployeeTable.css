@@ -13,3 +13,11 @@ select {
 input {
   margin: 0% 2% 1% 0%;
 }
+
+.checkbox {
+  text-align: center;
+}
+
+.missing-button {
+  text-align: center;
+}

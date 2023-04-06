@@ -102,6 +102,11 @@ app.get('/api/equipment', async (req, res) => {
   return res.json(equipment);
 });
 
+app.get('/api/equipment/:id', async (req, res) => {
+  const equipment = await Equipment.findById(req.params.id);
+  return res.json(equipment);
+});
+
 app.post('/api/equipment/', async (req, res, next) => {
   const equipment = req.body;
 
@@ -121,6 +126,16 @@ app.patch('/api/equipment/:id', async (req, res, next) => {
       { new: true }
     );
     return res.json(equipment);
+  } catch (err) {
+    return next(err);
+  }
+});
+
+app.delete('/api/equipment/:id', async (req, res, next) => {
+  try {
+    const equipment = await Equipment.findById(req.params.id);
+    const deleted = await equipment.delete();
+    return res.json(deleted);
   } catch (err) {
     return next(err);
   }

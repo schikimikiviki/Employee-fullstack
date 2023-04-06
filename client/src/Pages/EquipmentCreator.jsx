@@ -3,7 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import EquipmentForm from '../Components/EquipmentForm';
 
 const createEquipment = (equipment) => {
-  return fetch('/api/eqipment', {
+  return fetch('/api/equipment', {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',

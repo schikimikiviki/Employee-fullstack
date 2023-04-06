@@ -15,6 +15,7 @@ const updateEquipment = (equipment) => {
 };
 
 const fetchEquipment = (id) => {
+  console.log(id);
   return fetch(`/api/equipment/${id}`).then((res) => res.json());
 };
 
@@ -25,6 +26,8 @@ const EquipmentUpdater = () => {
   const [equipment, setEquipment] = useState(null);
   const [updateLoading, setUpdateLoading] = useState(false);
   const [equipmentLoading, setEquipmentLoading] = useState(true);
+
+  console.log(id);
 
   useEffect(() => {
     setEquipmentLoading(true);
@@ -48,7 +51,7 @@ const EquipmentUpdater = () => {
 
   return (
     <EquipmentForm
-      equipment={equipment}
+      initialequipment={equipment}
       onSave={handleUpdateEquipment}
       disabled={updateLoading}
       onCancel={() => navigate('/')}

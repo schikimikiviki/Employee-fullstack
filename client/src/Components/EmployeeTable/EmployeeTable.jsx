@@ -12,6 +12,9 @@ const EmployeeTable = ({ employees, onDelete }) => {
   const [searchedPosition, setSearchedPosition] = useState('');
   const [sortedField, setSortedField] = useState(null);
   const [sortingDirection, setSortingDirection] = useState('');
+  const [checked, setChecked] = useState(
+    new Array(employeeData.length).fill(false)
+  );
 
   let positions = [
     ...new Set(employeeData.map((employee) => employee.position)),
@@ -99,6 +102,16 @@ const EmployeeTable = ({ employees, onDelete }) => {
 
   //console.log(employeeData);
 
+  const handleCheckChange = (id) => {
+    const index = employeeData.findIndex((employee) => employee._id === id);
+    const newEmployeeData = [...employeeData];
+    newEmployeeData.forEach((employee) => {
+      employee.checked = false;
+    });
+    newEmployeeData[index].checked = true;
+    setEmployeeData(newEmployeeData);
+  };
+
   return (
     <div className='EmployeeTable'>
       <select value={selectedPosition} onChange={handlePositionChange}>
@@ -170,6 +183,9 @@ const EmployeeTable = ({ employees, onDelete }) => {
             <th>
               <button onClick={handleSortReset}>Reset sorting</button>
             </th>
+            <th className='missing-button'>
+              <button>Present</button>
+            </th>
             <th />
           </tr>
         </thead>
@@ -188,6 +204,14 @@ const EmployeeTable = ({ employees, onDelete }) => {
                 <button type='button' onClick={() => onDelete(employee._id)}>
                   Delete
                 </button>
+              </td>
+              <td className='checkbox'>
+                <input
+                  type='checkbox'
+                  key={employee._id}
+                  checked={checked[employee._id]}
+                  onChange={() => handleCheckChange(employee._id)}
+                />
               </td>
             </tr>
           ))}
