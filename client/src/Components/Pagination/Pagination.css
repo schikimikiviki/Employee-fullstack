@@ -1,0 +1,25 @@
+li {
+  display: table-cell;
+  color: white !important;
+  padding: 2%;
+}
+
+.page-item {
+  padding: 10px !important;
+}
+
+.navigation-box {
+  display: flex;
+  justify-content: center !important;
+  align-items: center !important;
+}
+
+.page-link {
+  background-color: lightgray;
+  padding: 5px;
+
+  text-decoration: none;
+  background: linear-gradient(to right bottom, var(--slist)) border-box;
+  color: white;
+  border-style: solid;
+}

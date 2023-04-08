@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loading from '../Components/Loading';
 import EmployeeTable from '../Components/EmployeeTable';
+import Pagination from '../Components/Pagination/Pagination.jsx';
 
 const fetchEmployees = () => {
   return fetch('/api/employees').then((res) => res.json());
@@ -15,6 +16,8 @@ const deleteEmployee = (id) => {
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
+  const [currentPage, setCurrentPage] = useState(1);
+  const [recordsPerPage] = useState(15);
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -64,11 +67,26 @@ const EmployeeList = () => {
     }
   });
 
+  const indexOfLastRecord = currentPage * recordsPerPage;
+  const indexOfFirstRecord = indexOfLastRecord - recordsPerPage;
+  const currentRecords = processedEmployees.slice(
+    indexOfFirstRecord,
+    indexOfLastRecord
+  );
+  const nPages = Math.ceil(processedEmployees.length / recordsPerPage);
+
   // console.log('**********');
   // console.log(processedEmployees);
 
   return (
-    <EmployeeTable employees={processedEmployees} onDelete={handleDelete} />
+    <div>
+      <EmployeeTable employees={currentRecords} onDelete={handleDelete} />
+      <Pagination
+        nPages={nPages}
+        currentPage={currentPage}
+        setCurrentPage={setCurrentPage}
+      />
+    </div>
   );
 };
 
