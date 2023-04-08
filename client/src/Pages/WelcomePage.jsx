@@ -14,6 +14,9 @@ const Welcome = () => {
       <Link to='/equipment'>
         <button>Go to equipment</button>
       </Link>
+      <Link to='/missing'>
+        <button>Who's skipping work?</button>
+      </Link>
     </div>
   );
 };

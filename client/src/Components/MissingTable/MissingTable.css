@@ -1,0 +1,23 @@
+.Missing-Layout {
+  padding: 0.5rem;
+}
+
+.reset-button {
+  margin: 0% 2% 1% 0%;
+}
+
+select {
+  margin: 0% 2% 1% 0%;
+}
+
+input {
+  margin: 0% 2% 1% 0%;
+}
+
+.checkbox {
+  text-align: center;
+}
+
+.missing-button {
+  text-align: center;
+}

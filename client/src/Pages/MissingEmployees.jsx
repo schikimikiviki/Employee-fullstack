@@ -1,6 +1,7 @@
 import { useEffect, useState } from 'react';
 import Loading from '../Components/Loading';
-import EmployeeTable from '../Components/EmployeeTable';
+
+import MissingTable from '../Components/MissingTable';
 
 const fetchEmployees = () => {
   return fetch('/api/employees').then((res) => res.json());
@@ -12,7 +13,7 @@ const deleteEmployee = (id) => {
   );
 };
 
-const EmployeeList = () => {
+const MissingList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
 
@@ -63,9 +64,11 @@ const EmployeeList = () => {
     }
   });
 
-  return (
-    <EmployeeTable employees={processedEmployees} onDelete={handleDelete} />
+  let missingEmployees = processedEmployees.filter(
+    (employees) => employees.checked === false
   );
+
+  return <MissingTable employees={missingEmployees} onDelete={handleDelete} />;
 };
 
-export default EmployeeList;
+export default MissingList;

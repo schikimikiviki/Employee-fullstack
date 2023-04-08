@@ -1,9 +1,9 @@
 import { Link } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 import React from 'react';
-import './EmployeeTable.css';
+import './MissingTable.css';
 
-const EmployeeTable = ({ employees, onDelete }) => {
+const MissingTable = ({ employees, onDelete }) => {
   //console.log(employees);
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
@@ -129,7 +129,8 @@ const EmployeeTable = ({ employees, onDelete }) => {
   };
 
   return (
-    <div className='EmployeeTable'>
+    <div className='Missing-Layout'>
+      <h1>Missing employees: {employeeData.length}</h1>
       <select value={selectedPosition} onChange={handlePositionChange}>
         <option key='none' value='' disabled>
           Filter by position
@@ -237,4 +238,4 @@ const EmployeeTable = ({ employees, onDelete }) => {
   );
 };
 
-export default EmployeeTable;
+export default MissingTable;

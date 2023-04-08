@@ -17,6 +17,7 @@ import Welcome from './Pages/WelcomePage';
 import StatisticsList from './Pages/Statistics';
 import SingleEmployeeList from './Pages/SingleEmployee';
 import EquipmentList from './Pages/EquipmentList';
+import MissingList from './Pages/MissingEmployees';
 
 import './index.css';
 import TableTest from './Pages/TableTest';
@@ -53,6 +54,7 @@ const router = createBrowserRouter([
           },
         ],
       },
+      { path: 'missing', element: <MissingList /> },
       {
         path: '/employees',
         element: <EmployeeLayout />,
