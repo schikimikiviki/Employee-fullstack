@@ -1,18 +1,32 @@
+import { useState } from 'react';
+import equipmentToChooseFrom from './names.json';
+
 const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
+  const [selectedEquipment, setSelectedEquipment] = useState(null);
+
+  if (!employee) {
+    return <div>No employee data found.</div>;
+  }
+
+  console.log('OOOOOOOOOOOOOOOOOO');
   console.log(employee);
+
   const onSubmit = (e) => {
     e.preventDefault();
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
 
-    const employee = entries.reduce((acc, entry) => {
-      //accumulator
-      const [k, v] = entry; //Key, value
-      acc[k] = v;
-      return acc;
+    const employee = entries.reduce((accumulator, entry) => {
+      const [key, value] = entry;
+      accumulator[key] = value;
+      return accumulator;
     }, {});
 
     return onSave(employee);
+  };
+
+  const handleEquipmentChange = (e) => {
+    setSelectedEquipment(e.target.value);
   };
 
   return (
@@ -46,6 +60,32 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           name='position'
           id='position'
         />
+      </div>
+      <div className='control'>
+        <h2>Equipment: </h2>
+        {employee.equipment.length > 0 ? (
+          <div>{employee.equipment}</div>
+        ) : (
+          <div>Currently, this employee has no equipment!</div>
+        )}
+
+        <h3>Add new equipment</h3>
+
+        <select
+          value={selectedEquipment}
+          onChange={handleEquipmentChange}
+          name='equipment'
+          id='equipment'
+        >
+          <option key='none' value='' disabled>
+            Choose a new equipment
+          </option>
+          {equipmentToChooseFrom.map((equip) => (
+            <option key={equip} value={equip}>
+              {equip}
+            </option>
+          ))}
+        </select>
       </div>
 
       <div className='buttons'>

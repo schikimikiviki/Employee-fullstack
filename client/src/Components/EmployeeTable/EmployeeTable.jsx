@@ -199,6 +199,9 @@ const EmployeeTable = ({ employees, onDelete }) => {
             <th>
               <button onClick={handleSortReset}>Reset sorting</button>
             </th>
+            <th>
+              <button>Equipment</button>
+            </th>
             <th className='missing-button'>
               <button>Present</button>
             </th>
@@ -221,6 +224,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
                   Delete
                 </button>
               </td>
+              <td>{employee.equipment}</td>
               <td className='checkbox'>
                 <input
                   type='checkbox'

@@ -37,7 +37,7 @@ const EmployeeList = () => {
   }
 
   const processedEmployees = employees.map(
-    ({ name, position, level, _id, checked }) => {
+    ({ name, position, level, _id, checked, equipment }) => {
       const nameParts = name.split(' ');
       const firstName = nameParts[0];
       const lastName = nameParts[nameParts.length - 1];
@@ -53,6 +53,7 @@ const EmployeeList = () => {
         level,
         _id,
         checked,
+        equipment: [equipment],
       };
     }
   );
@@ -62,6 +63,9 @@ const EmployeeList = () => {
       employee.checked = false;
     }
   });
+
+  // console.log('**********');
+  // console.log(processedEmployees);
 
   return (
     <EmployeeTable employees={processedEmployees} onDelete={handleDelete} />

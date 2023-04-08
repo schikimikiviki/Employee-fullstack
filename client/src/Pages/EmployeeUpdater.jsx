@@ -34,7 +34,9 @@ const EmployeeUpdater = () => {
     });
   }, [id]);
 
+  console.log('----------------');
   console.log(employee);
+  console.log('----------------');
 
   const handleUpdateEmployee = (employee) => {
     setUpdateLoading(true);
