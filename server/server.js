@@ -10,7 +10,7 @@ const Equipment = require('./db/equipment.model');
 // (in the case of find()) or a single employee document
 //(in the case of findById()).
 
-const { MONGO_URL, PORT = 8081 } = process.env;
+const { MONGO_URL, PORT = 8080 } = process.env;
 
 if (!MONGO_URL) {
   console.error('Missing MONGO_URL environment variable');

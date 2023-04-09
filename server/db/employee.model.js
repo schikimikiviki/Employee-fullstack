@@ -10,6 +10,10 @@ const EmployeeSchema = new Schema({
   position: String,
   checked: Boolean,
   equipment: [String],
+  favoriteBrand: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'FavoriteBrand',
+  },
   created: {
     type: Date,
     default: Date.now,
