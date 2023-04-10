@@ -12,7 +12,6 @@ const EmployeeTable = ({ employees, brands, onDelete }) => {
   const [searchedPosition, setSearchedPosition] = useState('');
   const [sortedField, setSortedField] = useState(null);
   const [sortingDirection, setSortingDirection] = useState('');
-  // const [favBrand, setFavBrand] = useState(brands);
 
   let positions = [
     ...new Set(employeeData.map((employee) => employee.position)),

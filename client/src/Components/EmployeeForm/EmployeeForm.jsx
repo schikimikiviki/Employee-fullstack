@@ -1,15 +1,17 @@
 import { useState } from 'react';
 import equipmentToChooseFrom from './names.json';
+import brandsToChooseFrom from './brands.json';
 
-const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
-  const [selectedEquipment, setSelectedEquipment] = useState(null);
+const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
+  const [selectedEquipment, setSelectedEquipment] = useState('');
+  const [selectedBrand, setSelectedBrand] = useState('');
 
   if (!employee) {
     return <div>No employee data found.</div>;
   }
 
-  console.log('OOOOOOOOOOOOOOOOOO');
-  console.log(employee);
+  // console.log('OOOOOOOOOOOOOOOOOO');
+  // console.log(employee);
 
   const onSubmit = (e) => {
     e.preventDefault();
@@ -28,6 +30,17 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
   const handleEquipmentChange = (e) => {
     setSelectedEquipment(e.target.value);
   };
+
+  const handleBrandChange = (e) => {
+    setSelectedBrand(e.target.value);
+  };
+
+  console.log(employee);
+  console.log(brands);
+
+  const favoriteBrand = brands.find(
+    (brand) => brand._id === employee.favoriteBrand
+  );
 
   return (
     <form className='EmployeeForm' onSubmit={onSubmit}>
@@ -83,6 +96,28 @@ const EmployeeForm = ({ onSave, disabled, employee, onCancel }) => {
           {equipmentToChooseFrom.map((equip) => (
             <option key={equip} value={equip}>
               {equip}
+            </option>
+          ))}
+        </select>
+      </div>
+      <div className='control'>
+        <h2>Favorite Brand: </h2>
+        <div>{favoriteBrand ? favoriteBrand.name : ''}</div>
+
+        <h3>Choose new brand</h3>
+
+        <select
+          value={selectedBrand}
+          onChange={handleBrandChange}
+          name='brand'
+          id='brand'
+        >
+          <option key='none' value='' disabled>
+            Choose a new brand
+          </option>
+          {brandsToChooseFrom.map((brand) => (
+            <option key={brand} value={brand}>
+              {brand}
             </option>
           ))}
         </select>
