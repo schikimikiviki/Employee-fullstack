@@ -12,7 +12,7 @@ const EmployeeSchema = new Schema({
   equipment: [String],
   favoriteBrand: {
     type: mongoose.Schema.Types.ObjectId,
-    ref: 'FavoriteBrand',
+    ref: 'Brand',
   },
   created: {
     type: Date,

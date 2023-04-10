@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 
 const fetchStats = () => {
-  return fetch('/employees/statistics').then((res) => res.json());
+  return fetch('/api/other/statistics').then((res) => res.json());
 };
 
 const StatisticsList = () => {
