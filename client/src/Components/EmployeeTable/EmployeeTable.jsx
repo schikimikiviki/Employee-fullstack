@@ -3,8 +3,8 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import './EmployeeTable.css';
 
-const EmployeeTable = ({ employees, onDelete }) => {
-  //console.log(employees);
+const EmployeeTable = ({ employees, brands, onDelete }) => {
+  console.log(employees);
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
   const [employeeData, setEmployeeData] = useState(employees);
@@ -12,9 +12,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
   const [searchedPosition, setSearchedPosition] = useState('');
   const [sortedField, setSortedField] = useState(null);
   const [sortingDirection, setSortingDirection] = useState('');
-  // const [checked, setChecked] = useState(
-  //   new Array(employeeData.length).fill(false)
-  // );
+  // const [favBrand, setFavBrand] = useState(brands);
 
   let positions = [
     ...new Set(employeeData.map((employee) => employee.position)),
@@ -100,7 +98,7 @@ const EmployeeTable = ({ employees, onDelete }) => {
     setEmployeeData(employees);
   };
 
-  console.log(employeeData);
+  //console.log(employeeData);
 
   const handleCheckChange = (id) => {
     const index = employeeData.findIndex((employee) => employee._id === id);
@@ -202,6 +200,9 @@ const EmployeeTable = ({ employees, onDelete }) => {
             <th>
               <button>Equipment</button>
             </th>
+            <th>
+              <button>Favorite Brand</button>
+            </th>
             <th className='missing-button'>
               <button>Present</button>
             </th>
@@ -209,33 +210,47 @@ const EmployeeTable = ({ employees, onDelete }) => {
           </tr>
         </thead>
         <tbody key='body'>
-          {employeeData.map((employee) => (
-            <tr key={employee._id}>
-              <td>{employee.firstName}</td>
-              <td>{employee.middleName}</td>
-              <td>{employee.lastName}</td>
-              <td>{employee.level}</td>
-              <td>{employee.position}</td>
+          {employeeData.map((employee) => {
+            const favoriteBrand = brands.find(
+              (brand) => brand._id === employee.favoriteBrand
+            );
 
-              <td>
-                <Link to={`update/${employee._id}`}>
-                  <button type='button'>Update</button>
-                </Link>
-                <button type='button' onClick={() => onDelete(employee._id)}>
-                  Delete
-                </button>
-              </td>
-              <td>{employee.equipment}</td>
-              <td className='checkbox'>
-                <input
-                  type='checkbox'
-                  key={employee._id}
-                  checked={employee.checked}
-                  onChange={() => handleCheckChange(employee._id)}
-                />
-              </td>
-            </tr>
-          ))}
+            return (
+              <tr key={employee._id}>
+                <td>{employee.firstName}</td>
+                <td>{employee.middleName}</td>
+                <td>{employee.lastName}</td>
+                <td>{employee.level}</td>
+                <td>{employee.position}</td>
+
+                <td>
+                  <Link to={`update/${employee._id}`}>
+                    <button type='button'>Update</button>
+                  </Link>
+                  <button type='button' onClick={() => onDelete(employee._id)}>
+                    Delete
+                  </button>
+                </td>
+                <td>{employee.equipment}</td>
+                <td>
+                  <img
+                    alt='logo'
+                    width='100px'
+                    height='50px'
+                    src={favoriteBrand ? favoriteBrand.logo : ''}
+                  />
+                </td>
+                <td className='checkbox'>
+                  <input
+                    type='checkbox'
+                    key={employee._id}
+                    checked={employee.checked}
+                    onChange={() => handleCheckChange(employee._id)}
+                  />
+                </td>
+              </tr>
+            );
+          })}
         </tbody>
       </table>
     </div>

@@ -13,11 +13,16 @@ const deleteEmployee = (id) => {
   );
 };
 
+const fetchBrands = () => {
+  return fetch('/api/brands').then((res) => res.json());
+};
+
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
   const [employees, setEmployees] = useState(null);
   const [currentPage, setCurrentPage] = useState(1);
   const [recordsPerPage] = useState(15);
+  const [brands, setBrands] = useState(null);
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -33,14 +38,19 @@ const EmployeeList = () => {
       setLoading(false);
       setEmployees(employees);
     });
+    fetchBrands().then((brands) => {
+      setBrands(brands);
+    });
   }, []);
+
+  //console.log(brands);
 
   if (loading) {
     return <Loading />;
   }
 
   const processedEmployees = employees.map(
-    ({ name, position, level, _id, checked, equipment }) => {
+    ({ name, position, level, _id, checked, equipment, favoriteBrand }) => {
       const nameParts = name.split(' ');
       const firstName = nameParts[0];
       const lastName = nameParts[nameParts.length - 1];
@@ -56,6 +66,7 @@ const EmployeeList = () => {
         level,
         _id,
         checked,
+        favoriteBrand,
         equipment: [equipment],
       };
     }
@@ -80,7 +91,11 @@ const EmployeeList = () => {
 
   return (
     <div>
-      <EmployeeTable employees={currentRecords} onDelete={handleDelete} />
+      <EmployeeTable
+        employees={currentRecords}
+        brands={brands}
+        onDelete={handleDelete}
+      />
       <Pagination
         nPages={nPages}
         currentPage={currentPage}
