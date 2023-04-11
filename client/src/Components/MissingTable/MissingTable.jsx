@@ -218,6 +218,7 @@ const MissingTable = ({ employees, onDelete }) => {
                 <Link to={`update/${employee._id}`}>
                   <button type='button'>Update</button>
                 </Link>
+
                 <button type='button' onClick={() => onDelete(employee._id)}>
                   Delete
                 </button>

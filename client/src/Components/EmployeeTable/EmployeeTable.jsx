@@ -211,7 +211,7 @@ const EmployeeTable = ({ employees, brands, onDelete }) => {
         <tbody key='body'>
           {employeeData.map((employee) => {
             const favoriteBrand = brands.find(
-              (brand) => brand._id === employee.favoriteBrand
+              (brand) => brand._id === employee.brand
             );
 
             return (

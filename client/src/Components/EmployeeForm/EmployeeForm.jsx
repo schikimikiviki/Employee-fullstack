@@ -14,6 +14,8 @@ const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
   const onSubmit = (e) => {
     e.preventDefault();
 
+    //
+
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
 
@@ -37,9 +39,7 @@ const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
     console.log(typeof e.target.value);
   };
 
-  const favoriteBrandPrev = brands.find(
-    (brand) => brand._id === employee.favoriteBrand
-  );
+  const favoriteBrand = brands.find((brand) => brand._id === employee.brand);
 
   return (
     <form className='EmployeeForm' onSubmit={onSubmit}>
@@ -101,7 +101,7 @@ const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
       </div>
       <div className='control'>
         <h2>Favorite Brand: </h2>
-        <div>{favoriteBrandPrev ? favoriteBrandPrev.name : ''}</div>
+        <div>{favoriteBrand ? favoriteBrand.name : ''}</div>
 
         <h3>Choose new brand</h3>
 

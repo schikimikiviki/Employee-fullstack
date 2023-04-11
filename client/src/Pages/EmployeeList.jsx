@@ -50,7 +50,7 @@ const EmployeeList = () => {
   }
 
   const processedEmployees = employees.map(
-    ({ name, position, level, _id, checked, equipment, favoriteBrand }) => {
+    ({ name, position, level, _id, checked, equipment, brand }) => {
       const nameParts = name.split(' ');
       const firstName = nameParts[0];
       const lastName = nameParts[nameParts.length - 1];
@@ -66,7 +66,7 @@ const EmployeeList = () => {
         level,
         _id,
         checked,
-        favoriteBrand,
+        brand,
         equipment: [equipment],
       };
     }

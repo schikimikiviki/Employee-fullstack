@@ -54,7 +54,20 @@ const router = createBrowserRouter([
           },
         ],
       },
-      { path: 'missing', element: <MissingList /> },
+      {
+        path: '/missing',
+        element: <EmployeeLayout />,
+        children: [
+          {
+            path: '',
+            element: <MissingList />,
+          },
+          {
+            path: 'update/:id',
+            element: <EmployeeUpdater />,
+          },
+        ],
+      },
       {
         path: '/employees',
         element: <EmployeeLayout />,

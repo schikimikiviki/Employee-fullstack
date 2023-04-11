@@ -10,7 +10,7 @@ const EmployeeSchema = new Schema({
   position: String,
   checked: Boolean,
   equipment: [String],
-  favoriteBrand: {
+  brand: {
     type: mongoose.Schema.Types.ObjectId,
     ref: 'Brand',
   },
