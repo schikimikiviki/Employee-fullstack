@@ -4,7 +4,7 @@ import React from 'react';
 import './EmployeeTable.css';
 
 const EmployeeTable = ({ employees, brands, onDelete }) => {
-  console.log(employees);
+  //console.log(employees);
   const [selectedPosition, setSelectedPosition] = useState('');
   const [selectedLevel, setSelectedLevel] = useState('');
   const [employeeData, setEmployeeData] = useState(employees);
@@ -57,13 +57,13 @@ const EmployeeTable = ({ employees, brands, onDelete }) => {
   const handleLevelSearch = (e) => {
     let inputValue = e.target.value;
     setSearchedLevel(inputValue);
-    console.log(inputValue);
+    //console.log(inputValue);
   };
 
   const handlePositionSearch = (e) => {
     let inputValue = e.target.value;
     setSearchedPosition(inputValue);
-    console.log(inputValue);
+    //console.log(inputValue);
   };
 
   const handleSort = (field) => {
@@ -104,7 +104,7 @@ const EmployeeTable = ({ employees, brands, onDelete }) => {
     const newEmployeeData = [...employeeData];
     newEmployeeData[index].checked = !newEmployeeData[index].checked;
     setEmployeeData(newEmployeeData);
-    console.log(employeeData);
+    //console.log(employeeData);
 
     fetch(`/api/employees/${id}`, {
       method: 'PATCH',

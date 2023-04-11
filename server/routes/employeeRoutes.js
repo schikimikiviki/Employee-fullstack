@@ -2,6 +2,7 @@ const express = require('express');
 const router = express.Router();
 
 const Employee = require('../db/employee.model');
+const mongoose = require('mongoose');
 
 router.get('/', async (req, res) => {
   const employees = await Employee.find().sort({ created: 'desc' });
@@ -28,7 +29,12 @@ router.patch('/:id', async (req, res, next) => {
   try {
     const employee = await Employee.findOneAndUpdate(
       { _id: req.params.id },
-      { $set: { ...req.body } },
+      {
+        $set: {
+          ...req.body,
+          favoriteBrand: mongoose.Types.ObjectId(req.body.favoriteBrand),
+        },
+      },
       { new: true }
     );
     return res.json(employee);

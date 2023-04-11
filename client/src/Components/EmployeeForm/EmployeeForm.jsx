@@ -1,20 +1,19 @@
 import { useState } from 'react';
 import equipmentToChooseFrom from './names.json';
-import brandsToChooseFrom from './brands.json';
 
 const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
   const [selectedEquipment, setSelectedEquipment] = useState('');
   const [selectedBrand, setSelectedBrand] = useState('');
 
+  console.log(brands);
+
   if (!employee) {
     return <div>No employee data found.</div>;
   }
 
-  // console.log('OOOOOOOOOOOOOOOOOO');
-  // console.log(employee);
-
   const onSubmit = (e) => {
     e.preventDefault();
+
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
 
@@ -33,12 +32,12 @@ const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
 
   const handleBrandChange = (e) => {
     setSelectedBrand(e.target.value);
+
+    console.log(e.target.value);
+    console.log(typeof e.target.value);
   };
 
-  console.log(employee);
-  console.log(brands);
-
-  const favoriteBrand = brands.find(
+  const favoriteBrandPrev = brands.find(
     (brand) => brand._id === employee.favoriteBrand
   );
 
@@ -102,7 +101,7 @@ const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
       </div>
       <div className='control'>
         <h2>Favorite Brand: </h2>
-        <div>{favoriteBrand ? favoriteBrand.name : ''}</div>
+        <div>{favoriteBrandPrev ? favoriteBrandPrev.name : ''}</div>
 
         <h3>Choose new brand</h3>
 
@@ -115,9 +114,9 @@ const EmployeeForm = ({ onSave, disabled, employee, brands, onCancel }) => {
           <option key='none' value='' disabled>
             Choose a new brand
           </option>
-          {brandsToChooseFrom.map((brand) => (
-            <option key={brand} value={brand}>
-              {brand}
+          {brands.map((brand) => (
+            <option key={brand._id} value={brand._id}>
+              {brand.name}
             </option>
           ))}
         </select>

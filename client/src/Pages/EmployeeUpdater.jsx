@@ -31,15 +31,6 @@ const EmployeeUpdater = () => {
   const [employeeLoading, setEmployeeLoading] = useState(true);
   const [brands, setBrands] = useState(null);
 
-  // useEffect(() => {
-  //   setEmployeeLoading(true);
-  //   fetchEmployee(id).then((employee) => {
-  //     setEmployee(employee);
-  //     setEmployeeLoading(false);
-  //   });
-  //   fetchBrands().then((brand) => setBrands(brand));
-  // }, [id]);
-
   useEffect(() => {
     setEmployeeLoading(true);
     Promise.all([fetchEmployee(id), fetchBrands()]).then(
@@ -51,9 +42,9 @@ const EmployeeUpdater = () => {
     );
   }, [id]);
 
-  console.log('----------------');
-  console.log(employee);
-  console.log('----------------');
+  // console.log('----------------');
+  // console.log(employee);
+  // console.log('----------------');
 
   const handleUpdateEmployee = (employee) => {
     setUpdateLoading(true);
