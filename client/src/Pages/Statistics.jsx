@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import './Statistics.css';
 
 const fetchStats = () => {
   return fetch('/api/other/statistics').then((res) => res.json());
@@ -15,7 +16,8 @@ const StatisticsList = () => {
   }, []);
 
   return (
-    <div>
+    <div className='wholepage'>
+      <h1>Stats</h1>
       <h2>Total number of employees: {stats && stats.total}</h2>
       <h2>Total number of Junior employees: {stats && stats.byLevel.Junior}</h2>
       <h2>Total number of Medior employees: {stats && stats.byLevel.Medior}</h2>

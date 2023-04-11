@@ -6,6 +6,7 @@ import reportWebVitals from './reportWebVitals';
 import Layout from './Pages/Layout';
 import EmployeeLayout from './Pages/EmployeeLayout/EmployeeLayout';
 import EquipmentLayout from './Pages/EquipmentLayout/EquipmentLayout';
+import MissingLayout from './Pages/MissingLayout/MissingLayout';
 import ErrorPage from './Pages/ErrorPage';
 import EmployeeList from './Pages/EmployeeList';
 import EmployeeCreator from './Pages/EmployeeCreator';
@@ -56,7 +57,7 @@ const router = createBrowserRouter([
       },
       {
         path: '/missing',
-        element: <EmployeeLayout />,
+        element: <MissingLayout />,
         children: [
           {
             path: '',

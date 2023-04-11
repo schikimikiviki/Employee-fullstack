@@ -1,8 +1,9 @@
 import { Link } from 'react-router-dom';
+import './WelcomePage.css';
 
 const Welcome = () => {
   return (
-    <div>
+    <div className='wholepage'>
       <h1>Welcome to Employee MADNESS</h1>
 
       <Link to='/employees'>
