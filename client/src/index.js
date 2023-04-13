@@ -13,8 +13,10 @@ import EmployeeList from './Pages/EmployeeList';
 import BrandList from './Pages/BrandList';
 import EmployeeCreator from './Pages/EmployeeCreator';
 import EquipmentCreator from './Pages/EquipmentCreator';
+import BrandCreator from './Pages/BrandCreator';
 import EmployeeUpdater from './Pages/EmployeeUpdater';
 import EquipmentUpdater from './Pages/EquipmentUpdater';
+import BrandUpdater from './Pages/BrandUpdater';
 import SuperheroList from './Pages/SuperherosPage';
 import Welcome from './Pages/WelcomePage';
 import StatisticsList from './Pages/Statistics';
@@ -43,6 +45,10 @@ const router = createBrowserRouter([
         element: <EquipmentCreator />,
       },
       {
+        path: 'create-brand',
+        element: <BrandCreator />,
+      },
+      {
         path: '/equipment',
         element: <EquipmentLayout />,
         children: [
@@ -51,6 +57,7 @@ const router = createBrowserRouter([
             path: 'create-equipment',
             element: <EquipmentCreator />,
           },
+
           {
             path: 'update/:id',
             element: <EquipmentUpdater />,
@@ -100,6 +107,10 @@ const router = createBrowserRouter([
           {
             path: '',
             element: <BrandList />,
+          },
+          {
+            path: 'update/:id',
+            element: <BrandUpdater />,
           },
         ],
       },

@@ -26,6 +26,11 @@ const Layout = () => (
             <button type='button'>Create Equipment</button>
           </Link>
         </li>
+        <li>
+          <Link to='/create-brand'>
+            <button type='button'>Create Brand</button>
+          </Link>
+        </li>
       </ul>
     </nav>
     <Outlet />

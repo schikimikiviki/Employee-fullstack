@@ -27,17 +27,11 @@ const Welcome = () => {
           <Link to='/equipment'>
             <button>Go to equipment</button>
           </Link>
-          <div className='sublinks'>
-            <Link to='XXX'>Add new equipment</Link>
-          </div>
         </div>
         <div>
           <Link to='/brands'>
             <button>Go to brands</button>
           </Link>
-          <div className='sublinks'>
-            <Link to='XXX'>Add new brand</Link>
-          </div>
         </div>
         <div>
           <Link to='/statistics'>
