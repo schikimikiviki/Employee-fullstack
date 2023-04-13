@@ -1,3 +1,18 @@
 .wholepage {
   padding: 10px;
 }
+
+.link-container {
+  display: flex;
+  row-gap: 80px;
+}
+
+.single-container {
+  display: flex;
+  flex-direction: column;
+}
+
+.sublinks {
+  margin: 10px 20px 10px 20px;
+  text-decoration: underline;
+}

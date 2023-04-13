@@ -20,6 +20,4 @@ li {
 
   text-decoration: none;
   background: linear-gradient(to right bottom, var(--slist)) border-box;
-  color: white;
-  border-style: solid;
 }

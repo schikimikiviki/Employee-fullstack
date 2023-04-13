@@ -7,8 +7,10 @@ import Layout from './Pages/Layout';
 import EmployeeLayout from './Pages/EmployeeLayout/EmployeeLayout';
 import EquipmentLayout from './Pages/EquipmentLayout/EquipmentLayout';
 import MissingLayout from './Pages/MissingLayout/MissingLayout';
+import BrandLayout from './Pages/BrandLayout/BrandLayout';
 import ErrorPage from './Pages/ErrorPage';
 import EmployeeList from './Pages/EmployeeList';
+import BrandList from './Pages/BrandList';
 import EmployeeCreator from './Pages/EmployeeCreator';
 import EquipmentCreator from './Pages/EquipmentCreator';
 import EmployeeUpdater from './Pages/EmployeeUpdater';
@@ -88,6 +90,16 @@ const router = createBrowserRouter([
           {
             path: ':search',
             element: <SingleEmployeeList></SingleEmployeeList>,
+          },
+        ],
+      },
+      {
+        path: '/brands',
+        element: <BrandLayout />,
+        children: [
+          {
+            path: '',
+            element: <BrandList />,
           },
         ],
       },

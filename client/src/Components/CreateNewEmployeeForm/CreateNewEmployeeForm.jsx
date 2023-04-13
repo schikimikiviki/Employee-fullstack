@@ -1,7 +1,7 @@
 import { useState } from 'react';
 import equipmentToChooseFrom from './names.json';
 
-const EmployeeForm = ({
+const CreateNewEmployeeForm = ({
   onSave,
   disabled,
   employee = {},
@@ -11,19 +11,13 @@ const EmployeeForm = ({
   const [selectedEquipment, setSelectedEquipment] = useState('');
   const [selectedBrand, setSelectedBrand] = useState('');
 
-  console.log(brands);
-
-  if (!employee) {
-    return <div>No employee data found.</div>;
-  }
-
   const onSubmit = (e) => {
     e.preventDefault();
 
-    //
-
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
+
+    console.log(entries);
 
     const employee = entries.reduce((accumulator, entry) => {
       const [key, value] = entry;
@@ -41,19 +35,14 @@ const EmployeeForm = ({
   const handleBrandChange = (e) => {
     setSelectedBrand(e.target.value);
 
-    console.log(e.target.value);
-    console.log(typeof e.target.value);
+    // console.log(e.target.value);
+    // console.log(typeof e.target.value);
   };
-
-  const favoriteBrand = brands?.find((brand) => brand._id === employee.brand);
 
   return (
     <form className='EmployeeForm' onSubmit={onSubmit}>
-      {employee && (
-        <input type='hidden' name='_id' defaultValue={employee._id} />
-      )}
-
       <div className='control'>
+        <h1>New employee</h1>
         <label htmlFor='name'>Name:</label>
         <input
           defaultValue={employee ? employee.name : null}
@@ -81,13 +70,6 @@ const EmployeeForm = ({
       </div>
       <div className='control'>
         <h2>Equipment: </h2>
-        {employee.equipment ? (
-          <div>{employee.equipment}</div>
-        ) : (
-          <div>Currently, this employee has no equipment!</div>
-        )}
-
-        <h3>Add new equipment</h3>
 
         <select
           value={selectedEquipment}
@@ -107,9 +89,6 @@ const EmployeeForm = ({
       </div>
       <div className='control'>
         <h2>Favorite Brand: </h2>
-        <div>{favoriteBrand ? favoriteBrand.name : ''}</div>
-
-        <h3>Choose new brand</h3>
 
         <select
           value={selectedBrand}
@@ -130,7 +109,7 @@ const EmployeeForm = ({
 
       <div className='buttons'>
         <button type='submit' disabled={disabled}>
-          {employee ? 'Update Employee' : 'Create Employee'}
+          Create Employee
         </button>
 
         <button type='button' onClick={onCancel}>
@@ -141,4 +120,4 @@ const EmployeeForm = ({
   );
 };
 
-export default EmployeeForm;
+export default CreateNewEmployeeForm;

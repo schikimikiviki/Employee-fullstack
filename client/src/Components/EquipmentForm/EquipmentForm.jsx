@@ -21,6 +21,7 @@ const EquipmentForm = ({ onSave, disabled, initialequipment, onCancel }) => {
       )}
 
       <div className='control'>
+        <h1>New equipment</h1>
         <label htmlFor='name'>Name:</label>
         <input
           defaultValue={initialequipment ? initialequipment.name : null}
