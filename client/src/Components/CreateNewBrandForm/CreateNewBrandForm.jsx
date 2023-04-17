@@ -1,12 +1,12 @@
 const CreateNewBrandForm = ({ onSave, disabled, onCancel }) => {
   const onSubmit = (e) => {
-    console.log('XXX');
+    //console.log('XXX');
     e.preventDefault();
 
     const formData = new FormData(e.target);
     const entries = [...formData.entries()];
 
-    console.log(entries);
+    //console.log(entries);
 
     const brand = entries.reduce((accumulator, entry) => {
       const [key, value] = entry;

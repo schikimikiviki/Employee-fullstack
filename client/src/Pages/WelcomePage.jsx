@@ -1,7 +1,19 @@
 import { Link } from 'react-router-dom';
 import './WelcomePage.css';
+import { useState } from 'react';
 
 const Welcome = () => {
+  const [query, setQuery] = useState('');
+
+  const handleInputChange = (event) => {
+    setQuery(event.target.value);
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+    window.location.href = `/search?query=${query}`;
+  };
+
   return (
     <div className='wholepage'>
       <h1>Welcome to Employee MADNESS</h1>
@@ -10,17 +22,26 @@ const Welcome = () => {
           <Link to='/employees'>
             <button>Go to Employees</button>
           </Link>
-          <div className='sublinks'>
-            <Link to='XXX'>Add new employee</Link>
-          </div>
+
           <div className='sublinks'>
             <Link to='/missing'>Who's skipping work?</Link>
           </div>
           <div className='sublinks'>
-            <Link to='XXX'>Superhero employees</Link>
+            <Link to='/superheros'>Superhero employees</Link>
           </div>
           <div className='sublinks'>
-            <Link to='XXX'>Search for a employee</Link>
+            <form onSubmit={handleSubmit}>
+              <input
+                type='text'
+                id='search'
+                value={query}
+                onChange={handleInputChange}
+              />
+              <br />
+              <Link to={`/search/${query}`}>
+                <button type='submit'>Search</button>
+              </Link>
+            </form>
           </div>
         </div>
         <div>

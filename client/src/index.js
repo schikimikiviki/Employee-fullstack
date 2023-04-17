@@ -35,7 +35,7 @@ const router = createBrowserRouter([
     errorElement: <ErrorPage />,
     children: [
       { path: '', element: <Welcome /> },
-      { path: '/statistics', element: <StatisticsList /> },
+      { path: 'statistics', element: <StatisticsList /> },
       {
         path: 'create',
         element: <EmployeeCreator />,
@@ -47,6 +47,14 @@ const router = createBrowserRouter([
       {
         path: 'create-brand',
         element: <BrandCreator />,
+      },
+      {
+        path: 'superheros',
+        element: <SuperheroList></SuperheroList>,
+      },
+      {
+        path: 'search/:query',
+        element: <SingleEmployeeList></SingleEmployeeList>,
       },
       {
         path: '/equipment',
@@ -95,7 +103,7 @@ const router = createBrowserRouter([
             element: <EmployeeUpdater />,
           },
           {
-            path: ':search',
+            path: 'search',
             element: <SingleEmployeeList></SingleEmployeeList>,
           },
         ],

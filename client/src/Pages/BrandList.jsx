@@ -16,11 +16,14 @@ const BrandList = () => {
   const [loading, setLoading] = useState(true);
   const [brands, setBrands] = useState(null);
 
-  const handleDelete = (id) => {
-    deleteBrand(id);
+  const [deletedId, setDeletedId] = useState(null);
 
-    setBrands((brands) => {
-      return brands.filter((brand) => brand._id !== id);
+  const handleDelete = (id) => {
+    deleteBrand(id).then(() => {
+      setDeletedId(id);
+      setBrands((brands) => {
+        return brands.filter((brand) => brand._id !== id);
+      });
     });
   };
 
@@ -37,7 +40,11 @@ const BrandList = () => {
 
   return (
     <div>
-      <BrandTable brands={brands} onDelete={handleDelete} />
+      <BrandTable
+        brands={brands}
+        deletedId={deletedId}
+        onDelete={handleDelete}
+      />
     </div>
   );
 };

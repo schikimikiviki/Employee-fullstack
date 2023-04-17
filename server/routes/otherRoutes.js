@@ -34,12 +34,12 @@ router.get('/superheros', async (req, res) => {
   res.json(heros);
 });
 
-router.get('/:search', async (req, res) => {
-  let searchName = req.params.search.replace(/%20/g, ' ');
-
-  let regex = new RegExp(searchName, 'i');
-  let foundName = await Employee.find({ name: { $regex: regex } });
-  res.json(foundName);
+//define router
+router.get('/search/:query', async (req, res) => {
+  const userInput = req.params.query;
+  const regex = new RegExp(userInput, 'i');
+  const employees = await Employee.find({ name: regex });
+  res.json(employees);
 });
 
 module.exports = router;

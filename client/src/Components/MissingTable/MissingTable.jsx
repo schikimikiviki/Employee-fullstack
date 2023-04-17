@@ -100,14 +100,14 @@ const MissingTable = ({ employees, onDelete }) => {
     setEmployeeData(employees);
   };
 
-  console.log(employeeData);
+  //console.log(employeeData);
 
   const handleCheckChange = (id) => {
     const index = employeeData.findIndex((employee) => employee._id === id);
     const newEmployeeData = [...employeeData];
     newEmployeeData[index].checked = !newEmployeeData[index].checked;
     setEmployeeData(newEmployeeData);
-    console.log(employeeData);
+    //console.log(employeeData);
 
     fetch(`/api/employees/${id}`, {
       method: 'PATCH',

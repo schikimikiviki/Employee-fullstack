@@ -1,24 +1,31 @@
 import { useEffect, useState } from 'react';
-import { useParams } from 'react-router-dom';
 import Loading from '../Components/Loading';
 import EmployeeTable from '../Components/EmployeeTable';
+import { useParams } from 'react-router-dom';
+import './SingleEmployee.css';
 
-const fetchEmployees = (search) => {
-  return fetch(`/employees/${search}`, { method: 'GET' }).then((res) =>
+const fetchEmployees = (userInput) => {
+  return fetch(`/api/other/search/${userInput}`).then((res) => res.json());
+};
+
+const deleteEmployee = (id) => {
+  return fetch(`/api/employees/${id}`, { method: 'DELETE' }).then((res) =>
     res.json()
   );
 };
 
-const deleteEmployee = (id) => {
-  return fetch(`api/employees/${id}`, { method: 'DELETE' }).then((res) =>
-    res.json()
-  );
+const fetchBrands = async () => {
+  return await fetch('/api/brands').then((res) => res.json());
 };
 
 const EmployeeList = () => {
   const [loading, setLoading] = useState(true);
+
+  const { query } = useParams();
+  //console.log(query);
+
   const [employees, setEmployees] = useState(null);
-  const { search } = useParams();
+  const [brands, setBrands] = useState(null);
 
   const handleDelete = (id) => {
     deleteEmployee(id);
@@ -29,27 +36,71 @@ const EmployeeList = () => {
   };
 
   useEffect(() => {
-    fetchEmployees(search).then((employees) => {
+    fetchEmployees(query).then((employees) => {
       setLoading(false);
       setEmployees(employees);
     });
-  }, [search]);
+    fetchBrands().then((brands) => {
+      setBrands(brands);
+    });
+  }, [query]);
 
   if (loading) {
     return <Loading />;
   }
 
-  const processedEmployees = employees.map(({ name, position, level }) => {
-    const nameParts = name.split(' ');
-    const firstName = nameParts[0];
-    const lastName = nameParts[nameParts.length - 1];
-    const middleName =
-      nameParts.length > 2 ? nameParts.slice(1, -1).join(' ') : '';
-    return { name, firstName, middleName, lastName, position, level };
+  const processedEmployees = employees.map(
+    ({ name, position, level, _id, checked, equipment, brand }) => {
+      const nameParts = name.split(' ');
+      const firstName = nameParts[0];
+      const lastName = nameParts[nameParts.length - 1];
+      const middleName =
+        nameParts.length > 2 ? nameParts.slice(1, -1).join(' ') : '';
+
+      return {
+        name,
+        firstName,
+        middleName,
+        lastName,
+        position,
+        level,
+        _id,
+        checked,
+        brand,
+        equipment: [equipment],
+      };
+    }
+  );
+
+  processedEmployees.forEach((employee) => {
+    if (employee.checked === undefined) {
+      employee.checked = false;
+    }
   });
 
+  //console.log(brands);
+  //console.log(employees);
+
   return (
-    <EmployeeTable employees={processedEmployees} onDelete={handleDelete} />
+    <div>
+      {employees.length < 1 ? (
+        <div className='no-result'>
+          <h1>Sorry, no employee found! :c</h1>
+        </div>
+      ) : (
+        employees &&
+        brands && (
+          <div>
+            <EmployeeTable
+              employees={processedEmployees}
+              brands={brands}
+              onDelete={handleDelete}
+            />
+          </div>
+        )
+      )}
+      {/* conditional rendering to make it appear only when both are fetched */}
+    </div>
   );
 };
 

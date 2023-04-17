@@ -3,7 +3,7 @@ import { useState, useEffect } from 'react';
 import React from 'react';
 import './BrandTable.css';
 
-const BrandTable = ({ brands, onDelete }) => {
+const BrandTable = ({ brands, onDelete, deletedId }) => {
   const [brandData, setBrandData] = useState(brands);
   const [sortedField, setSortedField] = useState(null);
   const [sortingDirection, setSortingDirection] = useState('');
@@ -65,7 +65,12 @@ const BrandTable = ({ brands, onDelete }) => {
         <tbody key='body'>
           {brandData.map((brand) => {
             return (
-              <tr key={brand._id}>
+              <tr
+                key={brand._id}
+                style={{
+                  display: brand._id === deletedId ? 'none' : 'table-row',
+                }}
+              >
                 <td>{brand.name}</td>
                 <td>{brand.description}</td>
                 <td>{brand.foundedIn}</td>
