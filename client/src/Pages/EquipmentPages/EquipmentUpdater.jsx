@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import EquipmentForm from '../Components/EquipmentForm';
-import Loading from '../Components/Loading';
+import EquipmentForm from '../../Components/EquipmentForm';
+import Loading from '../../Components/Loading';
 
 const updateEquipment = (equipment) => {
   return fetch(`/api/equipment/${equipment._id}`, {

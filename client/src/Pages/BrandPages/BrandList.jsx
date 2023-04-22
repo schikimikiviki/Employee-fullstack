@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Loading from '../Components/Loading';
-import BrandTable from '../Components/BrandTable/BrandTable';
+import Loading from '../../Components/Loading';
+import BrandTable from '../../Components/BrandTable/BrandTable';
 
 const fetchBrands = () => {
   return fetch('/api/brands').then((res) => res.json());

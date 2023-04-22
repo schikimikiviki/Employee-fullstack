@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
-import Loading from '../Components/Loading';
-import EmployeeTable from '../Components/EmployeeTable';
+import Loading from '../../Components/Loading';
+import EmployeeTable from '../../Components/EmployeeTable';
 import { useParams } from 'react-router-dom';
 import './SingleEmployee.css';
 

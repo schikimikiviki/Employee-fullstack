@@ -1,6 +1,6 @@
 import { useState, useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
-import CreateNewBrandForm from '../Components/CreateNewBrandForm/CreateNewBrandForm';
+import CreateNewBrandForm from '../../Components/CreateNewBrandForm/CreateNewBrandForm';
 
 const createBrand = (brand) => {
   return fetch('/api/brands', {

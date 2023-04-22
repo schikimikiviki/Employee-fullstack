@@ -1,15 +1,15 @@
 import { useEffect, useState } from 'react';
-import Loading from '../Components/Loading';
-import EmployeeTable from '../Components/EmployeeTable';
-import Pagination from '../Components/Pagination/Pagination.jsx';
+import Loading from '../../Components/Loading';
+import EmployeeTable from '../../Components/EmployeeTable';
+import Pagination from '../../Components/Pagination/Pagination.jsx';
 
 const fetchEmployees = () => {
-  return fetch('/api/employees').then((res) => res.json());
+  return fetch('/api/other/superheros').then((res) => res.json());
 };
 
 const deleteEmployee = (id) => {
-  return fetch(`/api/employees/${id}`, { method: 'DELETE' }).then((res) =>
-    res.json()
+  return fetch(`/api/other/superheros/${id}`, { method: 'DELETE' }).then(
+    (res) => res.json()
   );
 };
 
@@ -91,16 +91,20 @@ const EmployeeList = () => {
 
   return (
     <div>
-      <EmployeeTable
-        employees={currentRecords}
-        brands={brands}
-        onDelete={handleDelete}
-      />
-      <Pagination
-        nPages={nPages}
-        currentPage={currentPage}
-        setCurrentPage={setCurrentPage}
-      />
+      {employees && brands && (
+        <div>
+          <EmployeeTable
+            employees={currentRecords}
+            brands={brands}
+            onDelete={handleDelete}
+          />
+          <Pagination
+            nPages={nPages}
+            currentPage={currentPage}
+            setCurrentPage={setCurrentPage}
+          />
+        </div>
+      )}
     </div>
   );
 };

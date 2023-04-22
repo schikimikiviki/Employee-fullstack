@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
-import Loading from '../Components/Loading';
+import Loading from '../../Components/Loading';
 
-import MissingTable from '../Components/MissingTable';
+import MissingTable from '../../Components/MissingTable';
 
 const fetchEmployees = () => {
   return fetch('/api/employees').then((res) => res.json());

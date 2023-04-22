@@ -1,8 +1,8 @@
 import { useEffect } from 'react';
 import { useState } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
-import BrandForm from '../Components/BrandForm';
-import Loading from '../Components/Loading';
+import BrandForm from '../../Components/BrandForm';
+import Loading from '../../Components/Loading';
 
 const updateBrand = (brand) => {
   return fetch(`/api/brands/${brand._id}`, {
