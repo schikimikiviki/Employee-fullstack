@@ -1,13 +1,14 @@
 /*
 Loading the .env file and creates environment variables from it
 */
-require('dotenv').config();
-const mongoose = require('mongoose');
-const names = require('./names.json');
-const levels = require('./levels.json');
-const positions = require('./positions.json');
-const EmployeeModel = require('../db/employee.model');
-const BrandModel = require('../db/brand.model');
+import dotenv from 'dotenv';
+dotenv.config();
+import mongoose from 'mongoose';
+import names from './names.json';
+import levels from './levels.json';
+import positions from './positions.json';
+import EmployeeModel from '../db/employee.model';
+import BrandModel from '../db/brand.model';
 
 const mongoUrl = process.env.MONGO_URL;
 

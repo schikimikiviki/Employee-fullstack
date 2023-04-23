@@ -1,45 +1,16 @@
-const express = require('express');
-const router = express.Router();
+import express from 'express';
+const otherRouter = express.Router();
 
-const Employee = require('../db/employee.model');
+import {
+  getStatistics,
+  getSuperheros,
+  getSearchQuery,
+} from '../controllers/otherControllers.js';
 
-router.get('/statistics', async (req, res, next) => {
-  try {
-    let totalCount = await Employee.countDocuments();
-    let juniorCount = await Employee.find({ level: 'Junior' }).countDocuments();
-    let mediorCount = await Employee.find({ level: 'Medior' }).countDocuments();
-    let seniorCount = await Employee.find({ level: 'Senior' }).countDocuments();
-    let expertCount = await Employee.find({ level: 'Expert' }).countDocuments();
-    let godlikeCount = await Employee.find({
-      level: 'Godlike',
-    }).countDocuments();
+otherRouter.route('/statistics').get(getStatistics);
 
-    res.json({
-      total: totalCount,
-      byLevel: {
-        Junior: juniorCount,
-        Medior: mediorCount,
-        Senior: seniorCount,
-        Expert: expertCount,
-        Godlike: godlikeCount,
-      },
-    });
-  } catch (error) {
-    next(error);
-  }
-});
+otherRouter.route('/superheros').get(getSuperheros);
 
-router.get('/superheros', async (req, res) => {
-  let heros = await Employee.find({ position: 'Superhero' });
-  res.json(heros);
-});
+otherRouter.route('/search/:query').get(getSearchQuery);
 
-//define router
-router.get('/search/:query', async (req, res) => {
-  const userInput = req.params.query;
-  const regex = new RegExp(userInput, 'i');
-  const employees = await Employee.find({ name: regex });
-  res.json(employees);
-});
-
-module.exports = router;
+export default otherRouter;

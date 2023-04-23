@@ -1,6 +1,6 @@
 // https://mongoosejs.com/
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -20,4 +20,6 @@ const EmployeeSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Employee', EmployeeSchema);
+const Employee = mongoose.model('Employee', EmployeeSchema);
+
+export default Employee;

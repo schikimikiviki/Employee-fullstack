@@ -1,9 +1,10 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const names = require('./names.json');
-const types = require('./types.json');
-const places = require('./places.json');
-const EquipmentModel = require('../db/equipment.model');
+import dotenv from 'dotenv';
+dotenv.config();
+import mongoose from 'mongoose';
+import names from './names.json';
+import types from './types.json';
+import places from './places.json';
+import EquipmentModel from '../db/equipment.model.js';
 
 const mongoUrl = process.env.MONGO_URL;
 

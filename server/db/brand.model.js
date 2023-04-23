@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -9,4 +9,6 @@ const BrandSchema = new mongoose.Schema({
   foundedIn: String,
 });
 
-module.exports = mongoose.model('Brand', BrandSchema);
+const Brand = mongoose.model('Brand', BrandSchema);
+
+export default Brand;

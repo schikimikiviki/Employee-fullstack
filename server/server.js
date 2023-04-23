@@ -1,11 +1,12 @@
-require('dotenv').config();
-const express = require('express');
-const mongoose = require('mongoose');
+import dotenv from 'dotenv';
+dotenv.config();
+import express from 'express';
+import mongoose from 'mongoose';
 
-const employeeRoutes = require('./routes/employeeRoutes');
-const equipmentRoutes = require('./routes/equipmentRoutes');
-const brandRoutes = require('./routes/brandRoutes');
-const otherRoutes = require('./routes/otherRoutes');
+import employeeRoutes from './routes/employeeRoutes.js';
+import equipmentRoutes from './routes/equipmentRoutes.js';
+import brandRoutes from './routes/brandRoutes.js';
+import otherRoutes from './routes/otherRoutes.js';
 
 const { MONGO_URL, PORT = 8080 } = process.env;
 

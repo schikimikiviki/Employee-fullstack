@@ -1,6 +1,6 @@
 // https://mongoosejs.com/
 
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const { Schema } = mongoose;
 
@@ -14,4 +14,6 @@ const EquipmentSchema = new Schema({
   },
 });
 
-module.exports = mongoose.model('Equipment', EquipmentSchema);
+const Equipment = mongoose.model('Equipment', EquipmentSchema);
+
+export default Equipment;

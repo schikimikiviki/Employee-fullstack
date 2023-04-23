@@ -1,7 +1,8 @@
-require('dotenv').config();
-const mongoose = require('mongoose');
-const BrandModel = require('../db/brand.model');
-const brands = require('./brands.json');
+import dotenv from 'dotenv';
+dotenv.config();
+import mongoose from 'mongoose';
+import BrandModel from '../db/brand.model';
+import brands from './brands.json';
 
 const mongoUrl = process.env.MONGO_URL;
 
